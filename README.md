@@ -31,7 +31,7 @@ This exercuse is left as an exercise. The main goal of this exercise is to **cre
 - For persisting across closing and reopening the tab, you can use the localStorage API. You can create a `usePersistedState` hook, which works exactly the same as the `React.useState` hook, but which also stores the value in localStorage on every update, and reads the initial value from localStorage. It should be used like this:
 
 ```js
-const [numCookies, setNumCookies] = usePersistedState(1000, 'num-cookies');
+const [numCookies, setNumCookies] = usePersistedState(1000, "num-cookies");
 ```
 
 (That second parameter is the name, to be used as a local storage key)
@@ -95,14 +95,14 @@ Your `GameProvider` component should look something like this:
 
 ```jsx
 export const GameProvider = ({ children }) => {
-  const [numCookies, setNumCookies] = usePersistedState('numCookies', 1000);
+  const [numCookies, setNumCookies] = usePersistedState("numCookies", 1000);
 
   const [purchasedItems, setPurchasedItems] = usePersistedState(
-    'purchasedItems',
+    "purchasedItems",
     {
       cursor: 0,
       grandma: 0,
-      farm: 0,
+      farm: 0
     }
   );
 
@@ -117,7 +117,7 @@ export const GameProvider = ({ children }) => {
         setNumCookies,
         purchasedItems,
         setPurchasedItems,
-        cookiesPerSecond: calculateCookiesPerSecond(purchasedItems),
+        cookiesPerSecond: calculateCookiesPerSecond(purchasedItems)
       }}
     >
       {children}
@@ -176,7 +176,7 @@ We'll import the GameContext, pluck out the relevant data, and update the interv
 .
 
 ```jsx
-import { GameContext } from './GameContext';
+import { GameContext } from "./GameContext";
 
 function App(props) {
   const { numCookies, setNumCookies, cookiesPerSecond } = React.useContext(
