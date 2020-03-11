@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import useInterval from "../hooks/use-interval.hook";
+import useInterval from '../hooks/use-interval.hook';
 
-import cookieSrc from "../cookie.svg";
-import Item from "./Item";
+import cookieSrc from '../cookie.svg';
+import Item from './Item';
 
 const items = [
-  { id: "cursor", name: "Cursor", cost: 10, value: 1 },
-  { id: "grandma", name: "Grandma", cost: 100, value: 10 },
-  { id: "farm", name: "Farm", cost: 1000, value: 80 }
+  { id: 'cursor', name: 'Cursor', cost: 10, value: 1 },
+  { id: 'grandma', name: 'Grandma', cost: 100, value: 10 },
+  { id: 'farm', name: 'Farm', cost: 1000, value: 80 }
 ];
 
 const calculateCookiesPerSecond = purchasedItems => {
@@ -46,21 +46,21 @@ const Game = () => {
     document.title = `${numCookies} cookies - Cookie Clicker Workshop`;
 
     return () => {
-      document.title = "Cookie Clicker Workshop";
+      document.title = 'Cookie Clicker Workshop';
     };
   }, [numCookies]);
 
   React.useEffect(() => {
     const handleKeydown = ev => {
-      if (ev.code === "Space") {
+      if (ev.code === 'Space') {
         incrementCookies();
       }
     };
 
-    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener('keydown', handleKeydown);
     };
   });
 
@@ -90,7 +90,7 @@ const Game = () => {
               numOwned={purchasedItems[item.id]}
               handleAttemptedPurchase={() => {
                 if (numCookies < item.cost) {
-                  alert("Cannot afford item");
+                  alert('Cannot afford item');
                   return;
                 }
 
