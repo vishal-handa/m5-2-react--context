@@ -20,15 +20,19 @@ The product manager comes to your desk, and tells you that there are two new req
 
 2. Similarly: if you close and reopen the tab, you shouldn't be reset to 1000 cookies! We want to ensure that the progress is saved and restored.
 
-This exercuse is left as an exercise. The main goal of this exercise is to **create connections in your brain**, to deepen your understanding of React, and the best way to do that is to puzzle it out.
+This exercise is left to be a little vague, but the hope is that it's a bit of an uphill climb. See if you can puzzle it out.
 
 (That said, if you're stuck for 15+ minutes, please do ask for help!)
 
-#### Hints
+Some notes/instructions:
 
 - For lifting state up, you'll want to pull all the state up into `App`, and then pass it down via props.
 - The list of `items` can be pulled into a `data.js` file, and imported in both `App` and `Game`.
-- For persisting across closing and reopening the tab, you can use the localStorage API. You can create a `usePersistedState` hook, which works exactly the same as the `React.useState` hook, but which also stores the value in localStorage on every update, and reads the initial value from localStorage. It should be used like this:
+- For persisting across closing and reopening the tab, you can use the localStorage API. Because interacting with localStorage is a side-effect, it can be done within the `useEffect` hook.
+
+The solution you'll come up with will likely be tied very specifically to the problem at hand (storing the number of cookies). It would be neat to take some time and extract a _custom hook_, one that could be used in other situations when data needs to be persisted in localStorage.
+
+Create a new custom hook called `usePersistedState`. It's your job to figure out how to implement it, but it should be used like this:
 
 ```js
 const [numCookies, setNumCookies] = usePersistedState(1000, "num-cookies");
@@ -54,6 +58,27 @@ We will also want to create a provider component, and export it:
 export const GameProvider = ({ children }) => {
   return <GameContext.Provider value={{}}>{children}</GameContext.Provider>;
 };
+```
+
+The provider needs to wrap around our application; it makes data available to child components. Open up `src/index.js`, import and use our provider:
+
+```diff
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './components/App';
++import { GameProvider } from './components/GameContext';
+
+const rootElement = document.getElementById('root');
+
+ReactDOM.render(
+- <App />
++ <GameProvider>
++   <App />
++ </GameProvider>,
+  rootElement
+);
+
 ```
 
 This is all the "structure" we need, although right now our context isn't very useful, since it doesn't hold any of the state!
