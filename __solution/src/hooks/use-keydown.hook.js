@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function useKeydown(code, callback) {
   React.useEffect(() => {
@@ -8,10 +8,10 @@ export default function useKeydown(code, callback) {
       }
     };
 
-    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener('keydown', handleKeydown);
     };
   });
 }

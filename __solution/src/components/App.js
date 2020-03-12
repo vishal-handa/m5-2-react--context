@@ -1,12 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import useInterval from "../hooks/use-interval.hook";
+import useInterval from '../hooks/use-interval.hook';
 
-import GlobalStyles from "./GlobalStyles";
-import { GameContext } from "./GameContext";
-import Home from "./Home";
-import Game from "./Game";
+import GlobalStyles from './GlobalStyles';
+import { GameContext } from './GameContext';
+import Home from './Home';
+import Game from './Game';
 
 function App(props) {
   const { numCookies, setNumCookies, cookiesPerSecond } = React.useContext(
