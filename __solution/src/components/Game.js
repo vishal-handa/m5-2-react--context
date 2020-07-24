@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-import items from '../data';
-import useDocumentTitle from '../hooks/use-document-title.hook';
-import useKeydown from '../hooks/use-keydown.hook';
+import items from "../data";
+import useDocumentTitle from "../hooks/use-document-title.hook";
+import useKeydown from "../hooks/use-keydown.hook";
 
-import cookieSrc from '../cookie.svg';
-import Item from './Item';
-import { GameContext } from './GameContext';
+import cookieSrc from "../cookie.svg";
+import Item from "./Item";
+import { GameContext } from "./GameContext";
 
 const Game = () => {
   const {
@@ -16,17 +16,17 @@ const Game = () => {
     setNumCookies,
     purchasedItems,
     setPurchasedItems,
-    cookiesPerSecond
+    cookiesPerSecond,
   } = React.useContext(GameContext);
 
   useDocumentTitle({
     title: `${numCookies} cookies - Cookie Clicker Workshop`,
-    fallbackTitle: 'Cookie Clicker Workshop'
+    fallbackTitle: "Cookie Clicker Workshop",
   });
 
-  const incrementCookies = () => setNumCookies(cookies => cookies + 1);
+  const incrementCookies = () => setNumCookies((cookies) => cookies + 1);
 
-  useKeydown('Space', incrementCookies);
+  useKeydown("Space", incrementCookies);
 
   return (
     <Wrapper>
@@ -53,14 +53,14 @@ const Game = () => {
               numOwned={purchasedItems[item.id]}
               handleAttemptedPurchase={() => {
                 if (numCookies < item.cost) {
-                  alert('Cannot afford item');
+                  alert("Cannot afford item");
                   return;
                 }
 
                 setNumCookies(numCookies - item.cost);
                 setPurchasedItems({
                   ...purchasedItems,
-                  [item.id]: purchasedItems[item.id] + 1
+                  [item.id]: purchasedItems[item.id] + 1,
                 });
               }}
             />

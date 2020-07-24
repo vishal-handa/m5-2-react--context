@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Item = ({
   index,
@@ -7,7 +7,7 @@ const Item = ({
   cost,
   value,
   numOwned,
-  handleAttemptedPurchase
+  handleAttemptedPurchase,
 }) => {
   const ref = React.useRef(null);
 

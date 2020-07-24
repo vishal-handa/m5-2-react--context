@@ -1,27 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import items from '../data';
-import usePersistedState from '../hooks/use-persisted-state.hook';
-import useInterval from '../hooks/use-interval.hook';
+import items from "../data";
+import usePersistedState from "../hooks/use-persisted-state.hook";
+import useInterval from "../hooks/use-interval.hook";
 
 export const GameContext = React.createContext(null);
 
 export const GameProvider = ({ children }) => {
-  const [numCookies, setNumCookies] = usePersistedState('numCookies', 1000);
+  const [numCookies, setNumCookies] = usePersistedState("numCookies", 1000);
 
   const [purchasedItems, setPurchasedItems] = usePersistedState(
-    'purchasedItems',
+    "purchasedItems",
     {
       cursor: 0,
       grandma: 0,
-      farm: 0
+      farm: 0,
     }
   );
 
-  const calculateCookiesPerSecond = purchasedItems => {
+  const calculateCookiesPerSecond = (purchasedItems) => {
     return Object.keys(purchasedItems).reduce((acc, itemId) => {
       const numOwned = purchasedItems[itemId];
-      const item = items.find(item => item.id === itemId);
+      const item = items.find((item) => item.id === itemId);
       const value = item.value;
 
       return acc + value * numOwned;
@@ -41,7 +41,7 @@ export const GameProvider = ({ children }) => {
         setNumCookies,
         purchasedItems,
         setPurchasedItems,
-        cookiesPerSecond: calculateCookiesPerSecond(purchasedItems)
+        cookiesPerSecond: calculateCookiesPerSecond(purchasedItems),
       }}
     >
       {children}
