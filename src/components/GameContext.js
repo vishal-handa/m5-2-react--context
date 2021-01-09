@@ -29,7 +29,6 @@ export const GameProvider = ({ children }) => {
         setNumCookies(numCookies + numOfGeneratedCookies);
     }, 1000);
 
-
     return <GameContext.Provider value={{
         numCookies,
         setNumCookies,

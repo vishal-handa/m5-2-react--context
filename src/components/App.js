@@ -5,7 +5,6 @@ import GlobalStyles from "./GlobalStyles";
 import Home from "./Home";
 import Game from "./Game";
 import { GameContext } from "./GameContext"
-import useInterval from "../hooks/use-interval.hook";
 
 function App() {
   const { numCookies, setNumCookies, purchasedItems, setPurchasedItems, cookies }=React.useContext(GameContext);
