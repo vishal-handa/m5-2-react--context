@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import usePersistedState from "../hooks/usePersistedState";
 import useInterval from "../hooks/use-interval.hook";
 import items from "./data"
@@ -13,6 +13,7 @@ export const GameProvider = ({ children }) => {
         grandma: 0,
         farm: 0,
     });
+
     const calculateCookiesPerSecond = (purchasedItems) => {
         //console.log("calculateCookiesPerSecond", purchasedItems)
         return Object.keys(purchasedItems).reduce((acc, itemId) => {
@@ -25,11 +26,10 @@ export const GameProvider = ({ children }) => {
     };
     useInterval(() => {
         const numOfGeneratedCookies = calculateCookiesPerSecond(purchasedItems);
-    
         setNumCookies(numCookies + numOfGeneratedCookies);
     }, 1000);
 
-    
+
     return <GameContext.Provider value={{
         numCookies,
         setNumCookies,

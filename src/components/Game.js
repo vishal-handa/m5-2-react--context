@@ -10,6 +10,8 @@ import items from "./data"
 
 const Game = ({ numCookies, setNumCookies, purchasedItems, setPurchasedItems, cookies }) => {
 
+
+
   const incrementCookies = () => {
     setNumCookies((c) => c + 1);
   };
