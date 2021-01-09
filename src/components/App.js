@@ -4,16 +4,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Home from "./Home";
 import Game from "./Game";
-import usePersistedState from "../hooks/usePersistedState";
+import { GameContext } from "./GameContext"
 
-function App(props) {
-  const [numCookies, setNumCookies] = usePersistedState("numCookies",1000);
-
-  const [purchasedItems, setPurchasedItems] = usePersistedState("purchasedItems",{
-    cursor: 0,
-    grandma: 0,
-    farm: 0,
-  });
+function App() {
+  const { numCookies, setNumCookies, purchasedItems, setPurchasedItems, cookies }=React.useContext(GameContext);
   return (
     <>
       <GlobalStyles />
@@ -22,11 +16,11 @@ function App(props) {
           <Home />
         </Route>
         <Route path="/game">
-          <Game 
-            numCookies={numCookies}
-            setNumCookies={setNumCookies}
-            purchasedItems={purchasedItems}
-            setPurchasedItems={setPurchasedItems}
+          <Game numCookies={numCookies}
+                setNumCookies={setNumCookies}
+                purchasedItems={purchasedItems}
+                setPurchasedItems={setPurchasedItems}
+                cookies={cookies}
           />
         </Route>
       </Router>
